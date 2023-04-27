@@ -1,5 +1,7 @@
-﻿string[] CreateArray(int size)
+﻿string[] CreateArray()
 {
+    Console.Write("Введите размер массива: ");
+    int size = Convert.ToInt32(Console.ReadLine());
     string[] array = new string[size];
     for (int i = 0; i < size; i += 1)
     {
@@ -8,9 +10,36 @@
     }
     return array;
 }
-void ShowArray(int[] array)
+void ShowArray(string[] array)
 {
-    for (int i = 0; i < array.Length; i += 1)
+    for (int i = 0; i < array.GetLength(0); i += 1)
         Console.Write(array[i] + " ");
     Console.WriteLine();
 }
+string[] ResultArray(string[] array)
+{
+    int c = 0;
+    for (int i = 0; i < array.GetLength(0); i += 1)
+        if (array[i].Length <= 3) c += 1;
+    string[] arrayRes = new string[c];
+    for (int i = 0; i < array.GetLength(0); i += 1)
+    {
+        int j = 0;
+        if (array[i].Length <= 3)
+        {
+            arrayRes[j] = array[i];
+            j += 1;
+        }
+    }
+    return arrayRes;
+}
+string[] arrayFaсt = CreateArray();
+Console.WriteLine("Созданный массив: ");
+ShowArray(arrayFaсt);
+Console.WriteLine();
+string[] arrayRes = ResultArray(arrayFaсt);
+Console.WriteLine(arrayRes.GetLength(0));
+Console.WriteLine("Новый массив из строк, длина которых меньше, либо равна 3 символам:");
+ShowArray(arrayRes);
+
+
